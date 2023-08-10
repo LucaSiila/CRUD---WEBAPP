@@ -32,7 +32,7 @@ $(document).ready(function () {
             {title:"SiiLA ID", field:"SIILA1_ID"},
             {title:"NOME", field:"SIILA1_NAME"},
             {title:"REGIÃO SiiLA", field:"REGION_NAME"},
-            {title:"CLASSE", field:"CLASSE"},
+            {title:"CLASSE", field:"CLASS"},
             {title:"DATA DE ENTREGA", field:"DELIVERY_DATE"},
             {title:"STATUS", field:"STATUS"},
             {title:"ANDAR", field:"SIILA2_NAME"},
@@ -319,7 +319,7 @@ $(document).ready(function () {
 			},
 
             {title:"Industry", field:"202303_INDUSTRY_NAME"},
-            {title:"Registry", field:"Registry"},
+            {title:"Registry", field:"REGISTRY"},
             {
                 title:"Tenant Contact",
                 field:"202303_CONTACT_NAME",
