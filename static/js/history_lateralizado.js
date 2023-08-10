@@ -6,9 +6,13 @@ $.get('/get_cadastre_names', function(data) {
 
 // Initialize the Tabulator table
 $(document).ready(function () {
+    console.log("Initializing Tabulator...");
     var table = new Tabulator("#history-lateralizado-table", {
-        ajaxURL:"/get_history_lateralizado_data",
-        layout:"fitDataStretch",
+        ajaxURL: "/get_history_lateralizado_data",
+        ajaxResponse: function(url, params, response) {
+            // Return the data property of the response
+            return response.data;
+        },
         responsiveLayout:"hide",
         tooltips:true,
         addRowPos:"top",
@@ -19,21 +23,21 @@ $(document).ready(function () {
         movableColumns:true,
         resizableRows:true,
         initialSort:[
-            {column:"HISTORY_ID", dir:"desc"},
+            {column:"SIILA3_ID", dir:"desc"},
         ],
         columns: [
-			{title:"SIILA3 ID", field:"SIILA3_ID"},
-			{title:"Market", field:"Market"},
-			{title:"Property Type", field:"Property Type"},
-			{title:"SiiLA ID", field:"SiiLA_ID"},
-			{title:"NOME", field:"NOME"},
-			{title:"REGIÃO SiiLA", field:"REGIÃO_SiiLA"},
-			{title:"CLASSE", field:"CLASSE"},
-			{title:"DATA DE ENTREGA", field:"DATA DE ENTREGA"},
-			{title:"STATUS", field:"STATUS"},
-			{title:"ANDAR", field:"ANDAR"},
-			{title:"CONJUNTO", field:"CONJUNTO"},
-			{title:"AREA CONJ./ANDAR", field:"AREA_CONJ./ANDAR"},
+            {title:"SIILA3 ID", field:"SIILA3_ID"},
+            {title:"Market", field:"MARKET_NAME"},
+            {title:"Property Type", field:"PROPERTY_TYPE"},
+            {title:"SiiLA ID", field:"SIILA1_ID"},
+            {title:"NOME", field:"SIILA1_NAME"},
+            {title:"REGIÃO SiiLA", field:"REGION_NAME"},
+            {title:"CLASSE", field:"CLASSE"},
+            {title:"DATA DE ENTREGA", field:"DELIVERY_DATE"},
+            {title:"STATUS", field:"STATUS"},
+            {title:"ANDAR", field:"SIILA2_NAME"},
+            {title:"CONJUNTO", field:"SIILA3_NAME"},
+            {title:"AREA CONJ./ANDAR", field:"AREA"},
 			{
 				title: "201504", field: "201504",
 				editor: "autocomplete",
@@ -314,30 +318,30 @@ $(document).ready(function () {
 				}
 			},
 
-			{title:"Industry", field:"Industry"},
-			{title:"Registry", field:"Registry"},
-			{
-				title:"Tenant Contact",
-				field:"Tenant Contact",
-				cellClick: function (e, cell) {
-					showPopup(cell.getRow().getData().SIILA3_ID, cell.getColumn().getDefinition().field);
-				}
-			},
-			{
-				title:"Tenant Contact Phone",
-				field:"Tenant Contact Phone",
-				cellClick: function (e, cell) {
-					showPopup(cell.getRow().getData().SIILA3_ID, cell.getColumn().getDefinition().field);
-				}
-			},
-			{
-				title:"Tenant Contact Email",
-				field:"Tenant Contact Email",
-				cellClick: function (e, cell) {
-					showPopup(cell.getRow().getData().SIILA3_ID, cell.getColumn().getDefinition().field);
-				}
-			},
-			{title:"DELIVERY PERIOD", field:"DELIVERY_PERIOD"},
+            {title:"Industry", field:"202303_INDUSTRY_NAME"},
+            {title:"Registry", field:"Registry"},
+            {
+                title:"Tenant Contact",
+                field:"202303_CONTACT_NAME",
+                cellClick: function (e, cell) {
+                    showPopup(cell.getRow().getData().SIILA3_ID, cell.getColumn().getDefinition().field);
+                }
+            },
+            {
+                title:"Tenant Contact Phone",
+                field:"202303_CONTACT_PHONE",
+                cellClick: function (e, cell) {
+                    showPopup(cell.getRow().getData().SIILA3_ID, cell.getColumn().getDefinition().field);
+                }
+            },
+            {
+                title:"Tenant Contact Email",
+                field:"202303_CONTACT_EMAIL",
+                cellClick: function (e, cell) {
+                    showPopup(cell.getRow().getData().SIILA3_ID, cell.getColumn().getDefinition().field);
+                }
+            },
+            {title:"DELIVERY PERIOD", field:"DELIVERY_PERIOD"},
 		],
         cellEdited:function(cell) {
             // Get the new and old values
@@ -371,27 +375,25 @@ $(document).ready(function () {
         },
     });
 
-    setTimeout(function(){
-        table.setData("/get_history_lateralizado_data");
-    }, 1000);
 	
 	document.getElementById("search").addEventListener("input", function(e){
 		table.setFilter([
 			{field:"SIILA3_ID", type:"like", value:e.target.value},
-			{field:"Market", type:"like", value:e.target.value},
-			{field:"Property Type", type:"like", value:e.target.value},
+			{field:"MARKET_NAME", type:"like", value:e.target.value},
+			{field:"PROPERTY_TYPE", type:"like", value:e.target.value},
 			{field:"SiiLA_ID", type:"like", value:e.target.value},
-			{field:"NOME", type:"like", value:e.target.value},
-			{field:"REGIÃO_SiiLA", type:"like", value:e.target.value},
+			{field:"SIILA1_NAME", type:"like", value:e.target.value},
+			{field:"REGION_NAME", type:"like", value:e.target.value},
 			{field:"CLASSE", type:"like", value:e.target.value},
-			{field:"DATA DE ENTREGA", type:"like", value:e.target.value},
+			{field:"DELIVERY_DATE", type:"like", value:e.target.value},
 			{field:"STATUS", type:"like", value:e.target.value},
-			{field:"ANDAR", type:"like", value:e.target.value},
-			{field:"CONJUNTO", type:"like", value:e.target.value},
-			{field:"AREA_CONJ./ANDAR", type:"like", value:e.target.value},
+			{field:"SIILA2_NAME", type:"like", value:e.target.value},
+			{field:"SIILA3_NAME", type:"like", value:e.target.value},
+			{field:"AREA", type:"like", value:e.target.value},
 			{field:"201504", type:"like", value:e.target.value},
 			{field:"201601", type:"like", value:e.target.value},
 			{field:"201602", type:"like", value:e.target.value},
+			{field:"201603", type:"like", value:e.target.value},
 			{field:"201604", type:"like", value:e.target.value},
 			{field:"201701", type:"like", value:e.target.value},
 			{field:"201702", type:"like", value:e.target.value},
@@ -420,12 +422,12 @@ $(document).ready(function () {
 			{field:"202301", type:"like", value:e.target.value},
 			{field:"202302", type:"like", value:e.target.value},
 			{field:"202303", type:"like", value:e.target.value},
-			{field:"Industry", type:"like", value:e.target.value},
+			{field:"202303_INDUSTRY_NAME", type:"like", value:e.target.value},
 			{field:"Registry", type:"like", value:e.target.value},
-			{field:"Tenant Contact", type:"like", value:e.target.value},
-			{field:"Tenant Contact Phone", type:"like", value:e.target.value},
-			{field:"Tenant Contact Email", type:"like", value:e.target.value},
-			{field:"DELIVERY PERIOD", type:"like", value:e.target.value},
+			{field:"202303_CONTACT_NAME", type:"like", value:e.target.value},
+			{field:"202303_CONTACT_PHONE", type:"like", value:e.target.value},
+			{field:"202303_CONTACT_EMAIL", type:"like", value:e.target.value},
+			{field:"DELIVERY_PERIOD", type:"like", value:e.target.value},
 		]);
 	});
 });
