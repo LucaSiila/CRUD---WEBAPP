@@ -11,9 +11,11 @@ class HistoryLateralizado(db.Model):
     SIILA1_NAME = Column(String(255))
     MARKET_NAME = Column(String(255))
     REGION_NAME = Column(String(255))
-    PROPERTY_TYPE = Column(String(255))
+    SIILA2_NAME = Column(String(255))  # Added
+    SIILA3_NAME = Column(String(255))  # Added
     DELIVERY_DATE = Column(Date)
     AREA = Column(Numeric(10, 2))
+    PROPERTY_TYPE = Column(String(255))
     _201504 = Column('201504', String(255))
     _201601 = Column('201601', String(255))
     _201602 = Column('201602', String(255))
