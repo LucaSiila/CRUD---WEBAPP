@@ -117,17 +117,17 @@ def get_history_lateralizado_data():
 # Convert the results to a list of dictionaries
     data = [{
         'SIILA3_ID': row.SIILA3_ID,
-        'Market': row.MARKET_NAME,
+        'MARKET_NAME': row.MARKET_NAME,
         'PROPERTY_TYPE': row.PROPERTY_TYPE,
-        'SiiLA_ID': row.SIILA1_ID,
-        'NOME': row.SIILA1_NAME,
-        'REGIÃO_SiiLA': row.REGION_NAME,
-        'CLASSE': row.CLASS,
-        'DATA DE ENTREGA': row.DELIVERY_DATE,
+        'SIILA1_ID': row.SIILA1_ID,
+        'SIILA1_NAME': row.SIILA1_NAME,
+        'REGION_NAME': row.REGION_NAME,
+        'CLASS': row.CLASS,
+        'DELIVERY_DATE': row.DELIVERY_DATE,
         'STATUS': row.STATUS,
-        'ANDAR': row.SIILA2_NAME,
-        'CONJUNTO': row.SIILA3_NAME,
-        'AREA_CONJ./ANDAR': row.AREA,  
+        'SIILA2_NAME': row.SIILA2_NAME,
+        'SIILA3_NAME': row.SIILA3_NAME,
+        'AREA': row.AREA,  
         '201504': row._201504,
         '201601': row._201601,
         '201602': row._201602,
@@ -160,11 +160,11 @@ def get_history_lateralizado_data():
         '202301': row._202301,
         '202302': row._202302,
         '202303': row._202303,
-        'Industry': row._202303_INDUSTRY_NAME,
-        'Registry': row.REGISTRY,
-        'Tenant Contact': row._202303_CONTACT_NAME,
-        'Tenant Contact Phone': row._202303_CONTACT_PHONE,
-        'Tenant Contact Email': row._202303_CONTACT_EMAIL
+        '_202303_INDUSTRY_NAME': row._202303_INDUSTRY_NAME,
+        'REGISTRY': row.REGISTRY,
+        '_202303_CONTACT_NAME': row._202303_CONTACT_NAME,
+        '_202303_CONTACT_PHONE': row._202303_CONTACT_PHONE,
+        '_202303_CONTACT_EMAIL': row._202303_CONTACT_EMAIL
     } for row in history_data]
 
     # Query total records and filtered records
