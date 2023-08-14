@@ -8,7 +8,8 @@
 	$(document).ready(function () {
 		console.log("Initializing Tabulator...");
 		var table = new Tabulator("#history-lateralizado-table", {
-			layout: "fitColumns", // Enable horizontal scrollbar
+			layout: "fitData", // Fit data and allow stretching
+			frozenColumns: 5, // Freeze the first 5 columns
 			ajaxURL: "/get_history_lateralizado_data",
 			ajaxResponse: function(url, params, response) {
 				return response.data;
