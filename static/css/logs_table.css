@@ -184,3 +184,14 @@ a:hover, button:hover {
     text-decoration: none;
     color: black;
 }
+
+#history-lateralizado-table .freeze-column {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    background: white;
+}
+
+#history-lateralizado-table .tabulator-tableHolder {
+    overflow-x: scroll !important; /* Force horizontal scrolling */
+}
