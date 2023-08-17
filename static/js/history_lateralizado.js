@@ -6,7 +6,7 @@
 
 	// Initialize the Tabulator table
 	$(document).ready(function () {
-		console.log("Initializing Tabulator..."); #test commit
+		console.log("Initializing Tabulator..."); 
 		var table = new Tabulator("#history-lateralizado-table", {
 			layout: "fitData", // Fit data and allow stretching
 			frozenColumns: 5, // Freeze the first 5 columns
