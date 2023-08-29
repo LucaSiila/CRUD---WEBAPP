@@ -10,6 +10,21 @@
     <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/tabulator/4.9.3/js/tabulator.min.js"></script>
 </head>
 <body>
+    <!-- Column Freeze Options -->
+    <div id="freezeColumnOptions" style="margin: 10px;">
+        <label><input type="checkbox" value="SIILA3_ID"> SIILA3 ID</label>
+        <label><input type="checkbox" value="SIILA1_ID"> SIILA1 ID</label>
+        <label><input type="checkbox" value="SIILA1_NAME"> SIILA1 NAME</label>
+        <label><input type="checkbox" value="MARKET_NAME"> Market</label>
+        <label><input type="checkbox" value="REGION_NAME"> Region</label>
+        <label><input type="checkbox" value="SIILA2_NAME"> SIILA2 NAME</label>
+        <label><input type="checkbox" value="SIILA3_NAME"> SIILA3 NAME</label>
+        <label><input type="checkbox" value="DELIVERY_DATE"> Delivery Date</label>
+        <label><input type="checkbox" value="AREA"> Area</label>
+        <label><input type="checkbox" value="PROPERTY_TYPE"> Property Type</label>
+        <button id="updateFrozenColumns" style="margin-left: 10px;">Update Frozen Columns</button>
+    </div>
+
     <!-- Data Modal -->
     <div id="dataModal" class="modal">
         <div class="modal-content">
@@ -66,6 +81,34 @@
             document.getElementById('dataModal').style.display = 'none';
         }
 
+        // Function to update frozen columns
+        function updateFrozenColumns() {
+            // Get all checked checkboxes
+            const checkedBoxes = $("#freezeColumnOptions input[type='checkbox']:checked");
+            const columnsToFreeze = [];
+
+            // Loop through each checked checkbox and add its value to the columnsToFreeze array
+            checkedBoxes.each(function() {
+                columnsToFreeze.push($(this).val());
+            });
+
+            // Update the frozen columns in your table (assuming you're using Tabulator)
+            // You'll need to replace 'yourTabulatorTable' with the actual Tabulator table instance
+            // You'll also need to replace 'yourColumns' with your actual column definitions
+            yourTabulatorTable.updateConfig({
+                columns: yourColumns.map(col => {
+                    if (columnsToFreeze.includes(col.field)) {
+                        col.frozen = true;
+                    } else {
+                        col.frozen = false;
+                    }
+                    return col;
+                })
+            });
+        }
+
+        // Attach the function to the button click event
+        $('#updateFrozenColumns').click(updateFrozenColumns);
     </script>
     <script src="{{ url_for('static', filename='js/history_lateralizado.js') }}"></script>
 </body>
