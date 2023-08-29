@@ -130,12 +130,7 @@
 
 	
 	function updateFrozenColumns() {
-		// Step 1: Reset the frozen columns
-		table.getColumns().forEach(function(column) {
-			column.updateDefinition({frozen: false});
-		});
-	
-		// Step 2: Count how many options were selected
+		// Get all checked checkboxes
 		const checkedBoxes = $("#freezeColumnOptions input[type='checkbox']:checked");
 		const columnsToFreeze = [];
 	
@@ -144,12 +139,19 @@
 			columnsToFreeze.push($(this).val());
 		});
 	
-		// Step 3 & 4: Update the frozen columns parameter with the correct value and which columns are frozen
-		table.getColumns().forEach(function(column) {
-			if (columnsToFreeze.includes(column.getField())) {
-				column.updateDefinition({frozen: true});
-			}
+		// Assuming your Tabulator table instance is stored in a variable called 'table'
+		// Update the frozen columns in your table
+		table.updateConfig({
+			columns: table.getColumns().map(col => {
+				if (columnsToFreeze.includes(col.getField())) {
+					col.update({frozen: true});
+				} else {
+					col.update({frozen: false});
+				}
+				return col;
+			})
 		});
 	}
+	
 
 $('#updateFrozenColumns').click(updateFrozenColumns);

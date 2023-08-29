@@ -180,18 +180,12 @@ a:hover, button:hover {
     background-color: #FFCD03;
 }
 /* Remove underline from the links and set color to black */
-#history-table a {
-    text-decoration: none;
-    color: black;
-}
-
-#history-lateralizado-table .freeze-column {
-    position: sticky;
-    left: 0;
-    z-index: 1;
-    background: white;
-}
-
 #history-lateralizado-table .tabulator-tableHolder {
-    overflow-x: scroll !important; /* Force horizontal scrolling */
+    /* Remove !important to let Tabulator handle scrolling */
+    overflow-x: scroll;
+}
+
+#history-lateralizado-table {
+    width: 100%;
+    height: 500px; /* Adjust as needed */
 }
