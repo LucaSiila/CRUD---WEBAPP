@@ -60,55 +60,7 @@
         </div>
         <div id="history-lateralizado-table"></div>
     </div>
-    <script>
-        function toggleMenu() {
-            var menuBar = document.getElementById("menu-bar");
-            var menuToggle = document.getElementById("menu-toggle");
 
-            if (menuBar.style.width == "0px" || menuBar.style.width == "") {
-                menuBar.style.width = "200px";
-                menuToggle.innerHTML = "&#8592;";
-                $(".content").css("margin-left", "260px");
-            } else {
-                menuBar.style.width = "0";
-                menuToggle.innerHTML = "&#8594;";
-                $(".content").css("margin-left", "60px");
-            }
-        }
-
-        function closeDataModal() {
-            document.getElementById('dataModal').style.display = 'none';
-        }
-
-        // Function to update frozen columns
-        function updateFrozenColumns() {
-            // Get all checked checkboxes
-            const checkedBoxes = $("#freezeColumnOptions input[type='checkbox']:checked");
-            const columnsToFreeze = [];
-
-            // Loop through each checked checkbox and add its value to the columnsToFreeze array
-            checkedBoxes.each(function() {
-                columnsToFreeze.push($(this).val());
-            });
-
-            // Update the frozen columns in your table (assuming you're using Tabulator)
-            // You'll need to replace 'yourTabulatorTable' with the actual Tabulator table instance
-            // You'll also need to replace 'yourColumns' with your actual column definitions
-            yourTabulatorTable.updateConfig({
-                columns: yourColumns.map(col => {
-                    if (columnsToFreeze.includes(col.field)) {
-                        col.frozen = true;
-                    } else {
-                        col.frozen = false;
-                    }
-                    return col;
-                })
-            });
-        }
-
-        // Attach the function to the button click event
-        $('#updateFrozenColumns').click(updateFrozenColumns);
-    </script>
         <script src="{{ url_for('static', filename='js/history_lateralizado.js') }}"></script>
 
 </body>

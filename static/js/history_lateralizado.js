@@ -30,18 +30,18 @@ $.get('/get_cadastre_names', function(data) {
 				{column:"SIILA3_ID", dir:"desc"},
 			],
 			columns: [
-				{title:"SIILA3 ID", field:"SIILA3_ID"},
-				{title:"Market", field:"MARKET_NAME"},
-				{title:"Property Type", field:"PROPERTY_TYPE"},
-				{title:"SiiLA ID", field:"SIILA1_ID"},
-				{title:"NOME", field:"SIILA1_NAME"},
-				{title:"REGIÃO SiiLA", field:"REGION_NAME"},
-				{title:"CLASSE", field:"CLASS"},
-				{title:"DATA DE ENTREGA", field:"DELIVERY_DATE"},
-				{title:"STATUS", field:"STATUS"},
-				{title:"ANDAR", field:"SIILA2_NAME"},
-				{title:"CONJUNTO", field:"SIILA3_NAME"},
-				{title:"AREA CONJ./ANDAR", field:"AREA"},
+				{title:"SIILA3 ID", field:"SIILA3_ID", frozen: false},
+				{title:"Market", field:"MARKET_NAME", frozen: false},
+				{title:"Property Type", field:"PROPERTY_TYPE", frozen: false},
+				{title:"SiiLA ID", field:"SIILA1_ID", frozen: false},
+				{title:"NOME", field:"SIILA1_NAME", frozen: false},
+				{title:"REGIÃO SiiLA", field:"REGION_NAME", frozen: false},
+				{title:"CLASSE", field:"CLASS", frozen: false},
+				{title:"DATA DE ENTREGA", field:"DELIVERY_DATE", frozen: false},
+				{title:"STATUS", field:"STATUS", frozen: false},
+				{title:"ANDAR", field:"SIILA2_NAME", frozen: false},
+				{title:"CONJUNTO", field:"SIILA3_NAME", frozen: false},
+				{title:"AREA CONJ./ANDAR", field:"AREA", frozen: false},
 				{
 					title: "201504", field: "201504",
 					editor: "autocomplete",
@@ -561,7 +561,26 @@ $.get('/get_cadastre_names', function(data) {
 		updateOriginalTable(selectedId);
 	});
 
-	
+	function toggleMenu() {
+		var menuBar = document.getElementById("menu-bar");
+		var menuToggle = document.getElementById("menu-toggle");
+
+		if (menuBar.style.width == "0px" || menuBar.style.width == "") {
+			menuBar.style.width = "200px";
+			menuToggle.innerHTML = "&#8592;";
+			$(".content").css("margin-left", "260px");
+		} else {
+			menuBar.style.width = "0";
+			menuToggle.innerHTML = "&#8594;";
+			$(".content").css("margin-left", "60px");
+		}
+	}
+
+	function closeDataModal() {
+		document.getElementById('dataModal').style.display = 'none';
+	}
+
+
 	function updateFrozenColumns() {
 		// Get all checked checkboxes
 		const checkedBoxes = $("#freezeColumnOptions input[type='checkbox']:checked");
