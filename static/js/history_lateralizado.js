@@ -10,22 +10,22 @@ $.get('/get_cadastre_names', function(data) {
 	// Initialize the Tabulator table
 	$(document).ready(function () {
 		console.log("Initializing Tabulator..."); 
-		var table = new Tabulator("#history-lateralizado-table", {
-			layout: "fitData", // Fit data and allow stretching
-			frozenColumns: 5, // Freeze the first 5 columns
+		table = new Tabulator("#history-lateralizado-table", {
+			layout: "fitData",  // Columns will resize to fit the data
 			ajaxURL: "/get_history_lateralizado_data",
 			ajaxResponse: function(url, params, response) {
 				return response.data;
 			},
-			responsiveLayout:"hide",
-			tooltips:true,
-			addRowPos:"top",
-			history:true,
-			pagination:"local",
-			paginationSize:25,
-			paginationSizeSelector:[25, 50, 100, 200],
-			movableColumns:true,
-			resizableRows:true,
+			responsiveLayout: false,  // Hide columns that don't fit
+			tooltips:true,  // Enable tooltips
+			addRowPos:"top",  // Add new rows at the top
+			history:true,  // Enable undo/redo history
+			pagination:"local",  // Enable local pagination
+			paginationSize:25,  // Rows per page
+			paginationSizeSelector:[25, 50, 100, 200],  // Rows per page selector
+			movableColumns:true,  // Enable column reordering
+			resizableRows:true,  // Enable row resizing
+			virtualDomHoz: false,  // Disable horizontal virtual DOM
 			initialSort:[
 				{column:"SIILA3_ID", dir:"desc"},
 			],
@@ -379,7 +379,8 @@ $.get('/get_cadastre_names', function(data) {
 			},
 		});
 
-
+		table.redraw(true);
+		document.getElementById("history-lateralizado-table").scrollLeft = 500; 
 		document.getElementById("search").addEventListener("input", function(e){
 			table.setFilter([
 				{field:"SIILA3_ID", type:"like", value:e.target.value},
@@ -571,7 +572,6 @@ $.get('/get_cadastre_names', function(data) {
 			columnsToFreeze.push($(this).val());
 		});
 	
-		// Assuming your Tabulator table instance is stored in a variable called 'table'
 		// Update the frozen columns in your table
 		table.updateConfig({
 			columns: table.getColumns().map(col => {

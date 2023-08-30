@@ -16,11 +16,11 @@ th {
 }
 
 td:hover {
-    background-color: #FFCD03;
+    background-color: #D3961C;
 }
 
 a:hover, button:hover {
-    background-color: #FFCD03;
+    background-color: #D3961C;
     cursor: pointer; /* change cursor on hover */
 }
 
@@ -29,7 +29,7 @@ a:hover, button:hover {
     position: fixed;
     height: 100%;
     background-color: #5C87A3;
-    border-right: 5px solid #FFCD03;
+    border-right: 5px solid #D3961C;
     transition: width 0.5s; /* Only transition the width */
     z-index: 100;
     overflow: hidden;
@@ -40,7 +40,7 @@ a:hover, button:hover {
 
 .menu-bar h1 {
     text-align: center;
-    color: #FFCD03;
+    color: #D3961C;
 }
 
 .menu-bar a {
@@ -53,7 +53,7 @@ a:hover, button:hover {
 }
 
 .menu-bar a:hover {
-    background-color: #FFCD03;
+    background-color: #D3961C;
     width: 100%; /* Ensure the full width is highlighted */
 }
 .menu-bar img {
@@ -68,7 +68,7 @@ a:hover, button:hover {
     left: 0;
     width: 30px;
     height: 20px;
-    background: #FFCD03; 
+    background: #D3961C; 
     cursor: pointer;
     font-size: 1.5em;
     color: white;
@@ -119,7 +119,7 @@ a:hover, button:hover {
 }
 /* Style for selected row in modal */
 .modal-body tr.selected {
-    background-color: #FFCD03; /* Orange highlight */
+    background-color: #D3961C; /* Orange highlight */
 }
 
 .modal-body {
@@ -151,7 +151,7 @@ a:hover, button:hover {
 }
 
 .modal-footer .modal-button:hover, .modal-header .modal-button:hover {
-    background-color: #FFCD03;
+    background-color: #D3961C;
 }
 
 .close {
@@ -163,7 +163,7 @@ a:hover, button:hover {
 
 .close:hover,
 .close:focus {
-    color: #FFCD03;
+    color: #D3961C;
     cursor: pointer;
 }
 
@@ -177,11 +177,13 @@ a:hover, button:hover {
 }
 
 .modal-button:hover {
-    background-color: #FFCD03;
+    background-color: #D3961C;
 }
 /* Remove underline from the links and set color to black */
 
 #history-lateralizado-table {
     width: 100%;
-    height: 500px; /* Adjust as needed */
+    height: 90%; /* Adjust as needed */
+    overflow: auto; /* Enable horizontal scrolling */
+    overflow-x: scroll;
 }
